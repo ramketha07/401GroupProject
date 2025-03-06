@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Fin Genius</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #000000;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    header {
+      background-color: #000000;
+      padding: 10px 20px;
+      width: 100%;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    .nav-links li {
+      margin-right: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 16px;
+    }
+
+    .nav-links a:hover {
+      color: #ffcc00;
+    }
+
+    .logo img {
+      height: 60px;
+    }
+
+    .bg-container {
+      text-align: center;
+    }
+
+    .heading {
+      font-size: 55px;
+      font-weight: bold;
+      margin-top: -45px;
+    }
+
+    .content {
+      font-size: 25px;
+      margin-top: -10px;
+    }
+
+    .title {
+      font-size: 20px;
+    }
+
+    .slider {
+      height: 230px;
+      margin: auto;
+      position: relative;
+      width: 90%;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .slide-track {
+      display: flex;
+      width: calc(250px * 18);
+      animation: scroll-left 50s linear infinite;
+    }
+
+    @keyframes scroll-left {
+      0% {
+        transform: translateX(0%);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    @keyframes scroll-right {
+      0% {
+        transform: translateX(-50%);
+      }
+      100% {
+        transform: translateX(0%);
+      }
+    }
+
+    .slider:nth-child(odd) .slide-track {
+      animation: scroll-left 50s linear infinite;
+    }
+
+    .slider:nth-child(even) .slide-track {
+      animation: scroll-right 50s linear infinite;
+    }
+
+    .slider:hover .slide-track {
+      animation-play-state: paused; /* Pauses the animation on hover */
+    }
+
+    .slide {
+      height: 70px;
+      width: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      text-align: center;
+      perspective: 100px;
+      background-color: #262626;
+      color: #fff;
+      border-radius: 10px;
+      margin-right: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .slide:hover {
+      transform: translateZ(20px);
+    }
+
+    .input-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      background-color: #292929;
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 600px;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #000000;
+      border-radius: 10px;
+      margin-right: 10px;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    input[type="text"]:focus {
+      border-color: #000000;
+    }
+
+    button {
+      padding: 10px 15px;
+      border: none;
+      background-color: #000000;
+      color: #e8e8e8;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #3b3b3b;
+    }
+
+    /* Media Queries for Responsiveness */
+
+    @media (max-width: 768px) {
+      .heading {
+        font-size: 40px;
+      }
+
+      .content {
+        font-size: 20px;
+      }
+
+      .nav-links li {
+        margin-right: 10px;
+      }
+
+      .slider {
+        height: 180px;
+      }
+
+      .slide {
+        height: 60px;
+        width: 200px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        width: 100%;
+        align-items: flex-start;
+      }
+
+      .nav-links li {
+        margin: 10px 0;
+      }
+
+      .heading {
+        font-size: 30px;
+      }
+
+      .content {
+        font-size: 18px;
+      }
+
+      .slider {
+        height: 150px;
+      }
+
+      .slide {
+        height: 50px;
+        width: 180px;
+      }
+
+      .input-box {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="/Fingenius.png" alt="Company Logo" style="width: 50px; height:50px; border-radius: 50px;">
+      </div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="/About">About Us</a></li>
+        <li id="auth-link"><a href="/signup">Signup/Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="bg-container">
+    <h6 class="title">Fin Genius</h6>
+    <h1 class="heading">Your Personal Financial Advisor </h1>
+    <p class="content">Do not save what is left after spending, <br>but spend what is left after saving.</p>
+  </div>
+
+  <div class="slider">
+    <div class="slide-track">
+      <div class="slide">
+        <p>I want to buy a house. How can I save money effectively for a down payment?</p>
+      </div>
+      <div class="slide">
+        <p>Track your daily expenses to identify areas where you can cut back.</p>
+      </div>
+      <div class="slide">
+        <p>Start investing with as little as $100 by choosing low-cost index funds.</p>
+      </div>
+      <div class="slide">
+        <p>Should I use my savings to pay off high-interest debt or invest in the stock market?</p>
+      </div>
+      <div class="slide">
+        <p>Set up automatic transfers to your savings account to build an emergency fund effortlessly.</p>
+      </div>
+      <div class="slide">
+        <p>Switch to a high-yield savings account to earn more interest on your savings.</p>
+      </div>
+      <div class="slide">
+        <p>What's the most effective way to create a budget that I can stick to?</p>
+      </div>
+      <div class="slide">
+        <p>Cut down on dining out and redirect those funds to your retirement account.</p>
+      </div>
+      <div class="slide">
+        <p>How do I diversify my investment portfolio to minimize risk?</p>
+      </div>
+      <div class="slide">
+        <p>Consider refinancing your mortgage to lower monthly payments and save on interest.</p>
+      </div>
+    </div>
+  </div> 
+
+  <div class="slider" style="margin-bottom:2px">
+    <div class="slide-track">
+      <div class="slide">
+        <p>I want to buy a house. How can I save money effectively for a down payment?</p>
+      </div>
+      <div class="slide">
+        <p>Track your daily expenses to identify areas where you can cut back.</p>
+      </div>
+      <div class="slide">
+        <p>Start investing with as little as $100 by choosing low-cost index funds.</p>
+      </div>
+      <div class="slide">
+        <p>Should I use my savings to pay off high-interest debt or invest in the stock market?</p>
+      </div>
+      <div class="slide">
+        <p>Set up automatic transfers to your savings account to build an emergency fund effortlessly.</p>
+      </div>
+      <div class="slide">
+        <p>Switch to a high-yield savings account to earn more interest on your savings.</p>
+      </div>
+      <div class="slide">
+        <p>What's the most effective way to create a budget that I can stick to?</p>
+      </div>
+      <div class="slide">
+        <p>Cut down on dining out and redirect those funds to your retirement account.</p>
+      </div>
+      <div class="slide">
+        <p>How do I diversify my investment portfolio to minimize risk?</p>
+      </div>
+      <div class="slide">
+        <p>Consider refinancing your mortgage to lower monthly payments and save on interest.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="slider" style="margin-bottom:150px">
+    <div class="slide-track">
+      <div class="slide">
+        <p>I want to buy a house. How can I save money effectively for a down payment?</p>
+      </div>
+      <div class="slide">
+        <p>Track your daily expenses to identify areas where you can cut back.</p>
+      </div>
+      <div class="slide">
+        <p>Start investing with as little as $100 by choosing low-cost index funds.</p>
+      </div>
+      <div class="slide">
+        <p>Should I use my savings to pay off high-interest debt or invest in the stock market?</p>
+      </div>
+      <div class="slide">
+        <p>Set up automatic transfers to your savings account to build an emergency fund effortlessly.</p>
+      </div>
+      <div class="slide">
+        <p>Switch to a high-yield savings account to earn more interest on your savings.</p>
+      </div>
+      <div class="slide">
+        <p>What's the most effective way to create a budget that I can stick to?</p>
+      </div>
+      <div class="slide">
+        <p>Cut down on dining out and redirect those funds to your retirement account.</p>
+      </div>
+      <div class="slide">
+        <p>How do I diversify my investment portfolio to minimize risk?</p>
+      </div>
+      <div class="slide">
+        <p>Consider refinancing your mortgage to lower monthly payments and save on interest.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-box">
+    <input type="text" id="userInput" placeholder="Type your question here..." />
+    <button type="submit" onclick="handleInput()">Send</button>
+  </div>
+
+  <script>
+    function handleInput() {
+        // Check if user is logged in
+        var isLoggedIn = false; // Replace this with actual login check
+
+        if (!isLoggedIn) {
+          // Redirect to signup page
+          window.location.href = '/signup';
+        } else {
+          // Handle input submission if logged in
+          console.log("Processing user input...");
+        }
+      }
+
+      // Function to update navbar based on login status
+      function updateNavbar() {
+        var isLoggedIn = false; // Replace this with actual login check
+        var authLink = document.getElementById('auth-link');
+        if (isLoggedIn) {
+          authLink.innerHTML = '<a href="/profile.ejs">Profile</a>';
+        } else {
+          authLink.innerHTML = '<a href="/signup">Signup/Login</a>';
+        }
+      }
+
+      // Update the navbar when the page loads
+      updateNavbar();
+    </script>
+
+</body>
+
+</html>

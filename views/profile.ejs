@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000000;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            background-color: #272727;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            font-size: 32px;
+            margin-bottom: 25px;
+            color: #ffffff;
+            font-weight: bold;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        label {
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: block;
+            color: #ffffff;
+        }
+        input[type="text"], 
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dcdcdc;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+        }
+        button {
+            background-color: #343434;
+            color: #ffffff;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #000000;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            input[type="text"],
+            input[type="number"] {
+                font-size: 14px;
+                padding: 10px;
+            }
+            button {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Update Profile</h1>
+        <form action="/profile?uid=<%= uid %>" method="POST">
+            <div class="form-group">
+                <label for="username">User Name:</label>
+                <input type="text" id="username" name="username" required value="<%= user.username %>">
+            </div>
+            <div class="form-group">
+                <label for="occupation">Occupation:</label>
+                <input type="text" id="occupation" name="occupation" required value="<%= user.occupation %>">
+            </div>
+            <div class="form-group">
+                <label for="salary">Salary After Tax:</label>
+                <input type="number" id="salary" name="salary" required value="<%= user.salary %>">
+            </div>
+            <div class="form-group">
+                <label for="loan">Loan With Details:</label>
+                <input type="text" id="loan" name="loan" required value="<%= user.loan %>">
+            </div>
+            <div class="form-group">
+                <label for="expenses">Expenses:</label>
+                <input type="number" id="expenses" name="expenses" required value="<%= user.expenses %>">
+            </div>
+            <div class="form-group">
+                <label for="savings">Savings Per Month:</label>
+                <input type="number" id="savings" name="savings" required value="<%= user.savings %>">
+            </div>
+            <div class="form-group">
+                <label for="policy">Policy:</label>
+                <input type="text" id="policy" name="policy" required value="<%= user.policy %>">
+            </div>
+            <div class="form-group">
+                <label for="property">Property Details Worth:</label>
+                <input type="text" id="property" name="property" required value="<%= user.property %>">
+            </div>
+            <div class="form-group">
+                <label for="description">Description About Yourself:</label>
+                <input type="text" id="description" name="description" required value="<%= user.description %>">
+            </div>
+            <button type="submit">Update Profile</button>
+        </form>
+    </div>
+</body>
+</html>
